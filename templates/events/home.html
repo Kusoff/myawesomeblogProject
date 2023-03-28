@@ -15,7 +15,8 @@
 <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dWkQylJcbncqIrjvgMc6VNa3NsPfgSzXdvfJ-DHaiZzImR_PVw2YJKE0eAuHfn-8PfMbvc1ZvzNk_aYCRdgtHYEqgBokSiEpjUOXbf-YNIc" charset="UTF-8"></script><style>
+    <!--<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dWkQylJcbncqIrjvgMc6VNa3NsPfgSzXdvfJ-DHaiZzImR_PVw2YJKE0eAuHfn-8PfMbvc1ZvzNk_aYCRdgtHYEqgBokSiEpjUOXbf-YNIc" charset="UTF-8"></script>-->
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -37,7 +38,7 @@
   <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #97CAEF">
-          <a class="navbar-brand" href="{% url 'home' %}">My awesome blog</a>
+          <a class="navbar-brand" href="#">My awesome blog</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -49,9 +50,9 @@
               <li class="nav-item">
                 <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://t.me/every_day_rrain">Telegram</a>
               </li>
-{#              <li class="nav-item">#}
-{#                <a class="nav-link active" href="">ВК</a>#}
-{#              </li>#}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'showblog' %}">Blog</a>
+              </li>
               <li class="nav-item">
               </li>
             </ul>
@@ -59,26 +60,48 @@
         </nav>
 </header>
 
-<main role="main" class="pl-3">
+<main role="main">
 
-    <h1 class="pt-4">Recent posts</h1>
-    <br/>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <p class="lead text-muted">Hey there! I'm excited to see you here! You can write me right now!</p>
+      <p>
+        <a href="mailto:kusov.alex2004@gmail.com" class="btn btn-primary my-2">Mail me</a>
+      </p>
+        <img src="{% static 'glass.jpg' %}" height=300 width=300 class="img-fluid">
+    </div>
+  </section>
 
-    {% for post in posts.all %}
-        <a href="{% url 'specific_post' post.id %}"><h2>{{ post.post_title }}</h2></a>
-        <img src="{{ post.post_image.url }}" height=300 width=300 class="img-fluid">
-        <br/>
-        <div>
-        <p>{{ post.get_summary }}</p>
+  <div class="album py-5 bg-light">
+    <div class="container">
 
-        {{ post.post_date }}
+      <div class="row">
+        {% for event in events.all %}
+
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+              <img class ="card-img-top" src="{{ event.event_image.url }}"/>
+            <div class="card-body">
+              <p class="card-text">{{ event.event_text }}</p>
+            </div>
+          </div>
         </div>
-        <br/>
-    {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 
 </main>
 
-
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+  </div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 </html>
